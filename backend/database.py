@@ -5,7 +5,7 @@ Implements optimized queries, indexing, and performance monitoring
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 import pymongo
 from typing import Dict, Any, List, Optional, Union
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 from config import settings, DATABASE_INDEXES
 from cache import cache_manager
