@@ -283,6 +283,11 @@ async def get_transactions(current_user: User = Depends(get_current_user)):
         ]
     }).sort("created_at", -1).to_list(50)
     
+    # Convert ObjectId to string for JSON serialization
+    for transaction in transactions:
+        if "_id" in transaction:
+            transaction["_id"] = str(transaction["_id"])
+    
     return transactions
 
 # M-Pesa Endpoints
