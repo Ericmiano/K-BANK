@@ -609,9 +609,9 @@ async def get_dashboard_stats(current_user: dict = Depends(get_current_user)):
 @api_router.post("/transactions/transfer")
 async def create_transfer(
     transaction_data: TransactionCreate,
-    current_user: dict = Depends(get_current_user),
     request: Request,
-    background_tasks: BackgroundTasks
+    background_tasks: BackgroundTasks,
+    current_user: dict = Depends(get_current_user)
 ):
     """Enhanced money transfer with validation and monitoring"""
     
