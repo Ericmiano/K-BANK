@@ -375,6 +375,12 @@ async def create_user_by_admin(user_data: UserCreate, admin_user: User = Depends
 @api_router.get("/admin/transactions")
 async def get_all_transactions(admin_user: User = Depends(get_admin_user)):
     transactions = await db.transactions.find().sort("created_at", -1).limit(100).to_list(100)
+    
+    # Convert ObjectId to string for JSON serialization
+    for transaction in transactions:
+        if "_id" in transaction:
+            transaction["_id"] = str(transaction["_id"])
+    
     return transactions
 
 @api_router.patch("/admin/users/{user_id}/status")
